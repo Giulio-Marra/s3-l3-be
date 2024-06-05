@@ -5,8 +5,6 @@ import Giulio_Marra.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-import java.util.List;
-
 public class EventoDAO {
     private final EntityManager em;
 
@@ -22,17 +20,6 @@ public class EventoDAO {
         System.out.println("L'evento" + evento.getTitoloEventp() + "è stato aggiunto");
     }
 
-    public void saveArray(List<Evento> listaEventi) {
-        EntityTransaction transaction = em.getTransaction();
-        transaction.begin();
-
-        for (int i = 0; i < listaEventi.length(); i++) {
-            Evento evento = listaEventi.get(i);
-            em.persist(evento);
-            System.out.println("L'evento " + evento.getTitoloEventp() + " è stato aggiunto");
-        }
-        transaction.commit();
-    }
 
     public Evento getById(long idEvento) {
         Evento evento = em.find(Evento.class, idEvento);

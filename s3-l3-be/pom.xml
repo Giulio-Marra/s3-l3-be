@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>Giulio_Marra</groupId>
-    <artifactId>s3-l2-be</artifactId>
+    <artifactId>s3-l3-be</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

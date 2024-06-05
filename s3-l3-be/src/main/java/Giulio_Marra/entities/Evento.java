@@ -5,6 +5,8 @@ import Giulio_Marra.enums.TipoEvento;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "eventi")
@@ -12,7 +14,7 @@ public class Evento {
     @Id
     @GeneratedValue
 
-    private long id;
+    private UUID id;
 
     @Column(name = "titolo")
     private String titoloEventp;
@@ -23,6 +25,13 @@ public class Evento {
     @Column(name = "tipo_evento")
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoevento;
+
+    @OneToMany(mappedBy = "evento")
+    private List<Partecipazione> partecipazioni;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
 
     public Evento() {
 
@@ -35,7 +44,7 @@ public class Evento {
         this.tipoevento = tipoevento;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -71,6 +80,22 @@ public class Evento {
         this.tipoevento = tipoevento;
     }
 
+    public List<Partecipazione> getPartecipazioni() {
+        return partecipazioni;
+    }
+
+    public void setPartecipazioni(List<Partecipazione> partecipazioni) {
+        this.partecipazioni = partecipazioni;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "Evento{" +
@@ -79,6 +104,8 @@ public class Evento {
                 ", dataEevento=" + dataEevento +
                 ", descrizioneEvento='" + descrizioneEvento + '\'' +
                 ", tipoevento=" + tipoevento +
+                ", partecipazioni=" + partecipazioni +
+                ", location=" + location +
                 '}';
     }
 }
